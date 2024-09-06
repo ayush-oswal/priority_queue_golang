@@ -1,0 +1,47 @@
+
+### Push another task with medium priority
+POST http://localhost:8080/push?queue=queue1
+Content-Type: application/json
+
+{
+  "body": "Task 2",
+  "priority": "medium"
+}
+
+### Push a task to a queue
+POST http://localhost:8080/push?queue=queue1
+Content-Type: application/json
+
+{
+  "body": "Task 1",
+  "priority": "high"
+}
+
+### Push a task without specifying priority (should default to low)
+POST http://localhost:8080/push?queue=queue1
+Content-Type: application/json
+
+{
+  "body": "Task 3"
+}
+
+### Pop a task from the queue
+GET http://localhost:8080/pop?queue=queue1
+
+### Try to pop another task from the same queue
+GET http://localhost:8080/pop?queue=queue1
+
+### Push a task to a different queue
+POST http://localhost:8080/push?queue=queue2
+Content-Type: application/json
+
+{
+  "body": "Task A",
+  "priority": "low"
+}
+
+### Pop a task from the second queue
+GET http://localhost:8080/pop?queue=queue2
+
+### Try to pop a task from an empty queue (should return 404)
+GET http://localhost:8080/pop?queue=queue2
